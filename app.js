@@ -202,18 +202,23 @@ let numbers = [
    ]
 
    calculate ()
+   
 
 
     function calculate () {
         for (let i = 0; i < numbers.length; i++) {
          for (let y = 0; y < numbers.length; y++) {
-           if (numbers[i] + numbers[y] === 2020)  {
-            let multipliedNumbers = numbers[i] * numbers[y]
+            for (let x = 0; x < numbers.length; x++) {
+           if (numbers[i] + numbers[y] + numbers[x] === 2020)  {
+            let multipliedNumbers = numbers[i] * numbers[y] * numbers[x]
             console.log(multipliedNumbers)
+           }
          } 
          } 
         }
       }
+
+   
 
 
   
