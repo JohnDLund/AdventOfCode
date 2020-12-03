@@ -5,99 +5,37 @@ let myString =
 
 
 let paramsObject = {}
-
 let validPasswords = 0
+let myArr = myString.split(" ")
+console.log(myArr)
+let pwNum1
+let pwNum2
+let pwRules
+let pwAttemptArr
 
-dataformater()
+passwordValidator()
 
-
-function dataformater() {
-    let myArr = myString.split(" ")
-    console.log(myArr)
-
+function passwordValidator() {
     for (let i = 0; i < myArr.length; i++) {
+        dataFormatter(i)
 
-        if (isNaN(myArr[i]) === false && myArr[i + 1] === "-") {
-            paramsObject.number1 = myArr[i]
-        }
-
-        if (isNaN(myArr[i]) === false && myArr[i - 1] === "-") {
-            paramsObject.number2 = myArr[i]
-        }
-
-        if (myArr[i].includes(":")) {
-            paramsObject.rules = myArr[i]
-        }
-
-        if (myArr[i].includes(":") === false && myArr[i] != "-" && isNaN(myArr[i])) {
-            paramsObject.letters = myArr[i]
-        }
-
-        if ((i + 1) % 5 === 0) {
-            console.log(paramsObject)
-        }
-
-        if ((i + 1) % 5 === 0 && paramsObject.letters.split("").filter(l => l === paramsObject.rules.split("")[0]).length >= paramsObject.number1 && paramsObject.letters.split("").filter(l => l === paramsObject.rules.split("")[0]).length <= paramsObject.number2) {
+        if ((i + 1) % 5 === 0 && pwAttemptArr.split("").filter(letter => letter === pwRules.split("")[0]).length >= pwNum1 && pwAttemptArr.split("").filter(letter => letter === pwRules.split("")[0]).length <= pwNum2) {
             validPasswords++
         }
-
     } console.log(validPasswords)
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        // if (isNaN(joinedString[i]) === false) {
-
-        // }
-
-
-        // if (isNaN(joinedString[i]) === false && isNaN(joinedString[i + 1]) === false && joinedString[i + 2] === "-") {
-        //     console.log("YES!!!!!!!!!!")
-        //     paramsObject.number1[0] = joinedString[i]
-        //     paramsObject.number1[1] = joinedString[i + 1]
-        // }
-
-        // if (isNaN(joinedString[i]) === false && isNaN(joinedString[i - 1]) && joinedString[i + 1] == "-") {
-        //     paramsObject.number1[0] = joinedString[i]
-        // }
-
-
-
-        // if (joinedString[i] === Number && joinedString[i + 1] === Number && joinedString[i + 2] === Letter) {
-        //     joinedString[i] = paramsObject.number1[0]
-        //     joinedString[i + 1] = paramsObject.number1[1]
-        // }
-
-        // if (joinedString[i] === Number && joinedString[i - 1] != Number && joinedString[i + 1] === "-") {
-        //     joinedString[i] = paramsObject.number1[0]
-        // }
-
-
-
-
-
-
+function dataFormatter(i) {
+    if (isNaN(myArr[i]) === false && myArr[i + 1] === "-") {
+        pwNum1 = myArr[i]
+    }
+    if (isNaN(myArr[i]) === false && myArr[i - 1] === "-") {
+        pwNum2 = myArr[i]
+    }
+    if (myArr[i].includes(":")) {
+        pwRules = myArr[i]
+    }
+    if (myArr[i].includes(":") === false && myArr[i] != "-" && isNaN(myArr[i])) {
+        pwAttemptArr = myArr[i]
+    }
+}
