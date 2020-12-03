@@ -5,23 +5,43 @@ let myString =
 
 
 let paramsObject = {}
-let validPasswords = 0
+let validPasswords1 = 0
+let validPasswords2 = 0
 let myArr = myString.split(" ")
 let pwNum1
 let pwNum2
 let pwRules
 let pwAttemptArr
 
-passwordValidator()
+firstPasswordValidator()
+secondPasswordValidator()
 
-function passwordValidator() {
+function firstPasswordValidator() {
     for (let i = 0; i < myArr.length; i++) {
         dataFormatter(i)
 
-        if ((i + 1) % 5 === 0 && pwAttemptArr.split("").filter(letter => letter === pwRules.split("")[0]).length >= pwNum1 && pwAttemptArr.split("").filter(letter => letter === pwRules.split("")[0]).length <= pwNum2) {
-            validPasswords++
+        if ((i + 1) % 5 === 0) {
+            if (pwAttemptArr.filter(letter => letter === pwRules).length >= pwNum1 && pwAttemptArr.filter(letter => letter === pwRules).length <= pwNum2) {
+                validPasswords1++
+            }
         }
-    } console.log(validPasswords)
+    } console.log(validPasswords1)
+}
+
+function secondPasswordValidator() {
+    for (let i = 0; i < myArr.length; i++) {
+        dataFormatter(i)
+
+        if ((i + 1) % 5 === 0) {
+
+            if (pwAttemptArr[pwNum1 - 1] === pwRules && pwAttemptArr[pwNum2 - 1] != pwRules) {
+                validPasswords2++
+            }
+            if (pwAttemptArr[pwNum2 - 1] === pwRules && pwAttemptArr[pwNum1 - 1] != pwRules) {
+                validPasswords2++
+            }
+        }
+    } console.log(validPasswords2)
 }
 
 function dataFormatter(i) {
@@ -32,9 +52,9 @@ function dataFormatter(i) {
         pwNum2 = myArr[i]
     }
     if (myArr[i].includes(":")) {
-        pwRules = myArr[i]
+        pwRules = myArr[i].split("")[0]
     }
     if (myArr[i].includes(":") === false && myArr[i] != "-" && isNaN(myArr[i])) {
-        pwAttemptArr = myArr[i]
+        pwAttemptArr = myArr[i].split("")
     }
 }
