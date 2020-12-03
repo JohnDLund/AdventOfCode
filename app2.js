@@ -7,7 +7,6 @@ let myString =
 let paramsObject = {}
 let validPasswords = 0
 let myArr = myString.split(" ")
-console.log(myArr)
 let pwNum1
 let pwNum2
 let pwRules
