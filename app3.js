@@ -9,7 +9,7 @@ let treesHit = 0
 
 inputLoop()
 
-console.log(slope1() * slope2() * slope3() * slope4() * slope5())
+console.log("Part 2 Answer =", slope1() * slope2() * slope3() * slope4() * slope5())
 
 function inputLoop() {
     for (let i = 1; i < fixedInput.length; i++) {
@@ -23,7 +23,7 @@ function inputLoop() {
         }
         indexPosition += 3
     }
-    console.log(treesHit)
+    console.log("Part 1 Answer = ", treesHit)
 }
 
 function slope1() {
