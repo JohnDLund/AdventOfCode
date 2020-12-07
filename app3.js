@@ -6,11 +6,13 @@ let fixedInput = input.split(" ")
 let indexPosition = 3
 let treesHit = 0
 
+
 inputLoop()
+
+console.log(slope1() * slope2() * slope3() * slope4() * slope5())
 
 function inputLoop() {
     for (let i = 1; i < fixedInput.length; i++) {
-
         if (indexPosition > 30) {
             indexPosition = indexPosition - 31
             if (fixedInput[i][indexPosition] === "#") {
@@ -23,3 +25,95 @@ function inputLoop() {
     }
     console.log(treesHit)
 }
+
+function slope1() {
+    let newIndexPosition = 1
+    let problem2TreesHit = 0
+    for (let i = 1; i < fixedInput.length; i++) {
+        if (newIndexPosition > 30) {
+            newIndexPosition = newIndexPosition - 31
+            if (fixedInput[i][newIndexPosition] === "#") {
+                problem2TreesHit++
+            }
+        } else if (fixedInput[i][newIndexPosition] === "#") {
+            problem2TreesHit++
+        }
+        newIndexPosition += 1
+    }
+    console.log(problem2TreesHit)
+    return problem2TreesHit
+}
+
+function slope2() {
+    let newIndexPosition = 3
+    let problem2TreesHit = 0
+    for (let i = 1; i < fixedInput.length; i++) {
+        if (newIndexPosition > 30) {
+            newIndexPosition = newIndexPosition - 31
+            if (fixedInput[i][newIndexPosition] === "#") {
+                problem2TreesHit++
+            }
+        } else if (fixedInput[i][newIndexPosition] === "#") {
+            problem2TreesHit++
+        }
+        newIndexPosition += 3
+    }
+    console.log(problem2TreesHit)
+    return problem2TreesHit
+}
+
+function slope3() {
+    let newIndexPosition = 5
+    let problem2TreesHit = 0
+    for (let i = 1; i < fixedInput.length; i++) {
+
+        if (newIndexPosition > 30) {
+            newIndexPosition = newIndexPosition - 31
+            if (fixedInput[i][newIndexPosition] === "#") {
+                problem2TreesHit++
+            }
+        } else if (fixedInput[i][newIndexPosition] === "#") {
+            problem2TreesHit++
+        }
+        newIndexPosition += 5
+    }
+    console.log(problem2TreesHit)
+    return problem2TreesHit
+}
+
+function slope4() {
+    let newIndexPosition = 7
+    let problem2TreesHit = 0
+    for (let i = 1; i < fixedInput.length; i++) {
+        if (newIndexPosition > 30) {
+            newIndexPosition = newIndexPosition - 31
+            if (fixedInput[i][newIndexPosition] === "#") {
+                problem2TreesHit++
+            }
+        } else if (fixedInput[i][newIndexPosition] === "#") {
+            problem2TreesHit++
+        }
+        newIndexPosition += 7
+    }
+    console.log(problem2TreesHit)
+    return problem2TreesHit
+}
+
+function slope5() {
+    let newIndexPosition = 1
+    let problem2TreesHit = 0
+    for (let i = 2; i < fixedInput.length; i += 2) {
+        if (newIndexPosition > 30) {
+            newIndexPosition = newIndexPosition - 31
+            if (fixedInput[i][newIndexPosition] === "#") {
+                problem2TreesHit++
+            }
+        } else if (fixedInput[i][newIndexPosition] === "#") {
+            problem2TreesHit++
+        }
+        newIndexPosition += 1
+    }
+    console.log(problem2TreesHit)
+    return problem2TreesHit
+}
+
