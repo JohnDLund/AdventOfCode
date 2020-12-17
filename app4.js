@@ -1059,6 +1059,7 @@ function hgtCheck(passPort) {
             if (unitOfMeasure === "in" && measurement >= 59 && measurement <= 76) {
                 return true
             }
+            return false
         }
         return false
     }
@@ -1071,6 +1072,7 @@ function hclCheck(passPort) {
         if (passPort.hcl.length === 7 && passPort.hcl[0] === "#" && regEx.test(shortString) === true) {
             return true
         }
+        return false
     }
     return false
 };
@@ -1087,11 +1089,11 @@ function eclCheck(passPort) {
         }
         return false
     }
-};
+}
 function pid(passPort) {
     let regEx = RegExp(/[0-9]/g)
     if (passPort.hasOwnProperty("pid") === true) {
-        if (passPort.pid.length === 9 && regEx.test(passPort.pid) === true) {
+        if (passPort.pid.length === 9 && regEx.test(passPort.pid.toString()) === true) {
             return true
         }
         return false
