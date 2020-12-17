@@ -1030,20 +1030,29 @@ pid:274974402 hgt:183cm
 let validPassports = 0
 let passportProperties = ["byr", "iyr", "eyr", "hgt", "hcl", "ecl", "pid"]
 
-function bryCheck() {
-    return (passPort.byr >= 1920 && passPort.byr <= 2002) ? true : false
-};
-function iyrCheck() {
-    return (passPort.iyr >= 2010 && passPort.iyr <= 2020) ? true : false
-};
-function eyrCheck() {
-    return (passPort.eyr >= 2020 && passPort.eyr <= 2030) ? true : false
-};
-function hgtCheck() {
-    if (passPort.hgt) {
+function bryCheck(passPort) {
+    if (passPort.hasOwnProperty("byr") === true) {
+        return (passPort.byr >= 1920 && passPort.byr <= 2002) ? true : false
+    }
+    return false
+}
+function iyrCheck(passPort) {
+    if (passPort.hasOwnProperty("iyr") === true) {
+        return (passPort.iyr >= 2010 && passPort.iyr <= 2020) ? true : false
+    }
+    return false
+}
+function eyrCheck(passPort) {
+    if (passPort.hasOwnProperty("eyr") === true) {
+        return (passPort.eyr >= 2020 && passPort.eyr <= 2030) ? true : false
+    }
+    return false
+}
+function hgtCheck(passPort) {
+    if (passPort.hasOwnProperty("hgt") === true) {
         if (passPort.hgt.includes("cm") || passPort.hgt.includes("in")) {
             let unitOfMeasure = passPort.hgt.match(/in|cm/g)[0]
-            let measurement = parseInt(passPort.hgt.replace(/in|cm/g, ""))
+            let measurement = parseInt(passPort.hgt.replace(/\in|cm/g, ""))
             if (unitOfMeasure === "cm" && measurement >= 150 && measurement <= 193) {
                 return true
             }
@@ -1051,14 +1060,13 @@ function hgtCheck() {
                 return true
             }
         }
+        return false
     }
     return false
 };
-function hclCheck() {
-
-    if (passPort.hcl) {
-
-        let regEx = RegExp(/[a-f]|[0 - 9]/g)
+function hclCheck(passPort) {
+    if (passPort.hasOwnProperty("hcl") === true) {
+        let regEx = RegExp(/[a-f]|[0-9]/g)
         let shortString = passPort.hcl.slice(1)
         if (passPort.hcl.length === 7 && passPort.hcl[0] === "#" && regEx.test(shortString) === true) {
             return true
@@ -1066,9 +1074,8 @@ function hclCheck() {
     }
     return false
 };
-function eclCheck() {
-
-    if (passPort.ecl) {
+function eclCheck(passPort) {
+    if (passPort.hasOwnProperty("ecl") === true) {
         switch (passPort.ecl) {
             case 'amb':
             case 'blu':
@@ -1081,10 +1088,10 @@ function eclCheck() {
         return false
     }
 };
-function pid() {
+function pid(passPort) {
     let regEx = RegExp(/[0-9]/g)
-    if (passPort.pid) {
-        if (passPort.pid.length === 9 && regEx.test(passPort.pid)) {
+    if (passPort.hasOwnProperty("pid") === true) {
+        if (passPort.pid.length === 9 && regEx.test(passPort.pid) === true) {
             return true
         }
         return false
@@ -1111,10 +1118,36 @@ function part2() {
             .replace(/\n/g, " ")
             .split(" ")
             .map(keyValuePair => keyValuePair.split(":")).reduce((obj, [key, value]) => ({ ...obj, [key]: value }), {}));
-    for (passPort of dataArr2) {
-        if (bryCheck() === true && iyrCheck() === true && eyrCheck() === true && hgtCheck() === true && hclCheck() === true && eclCheck() === true && pid() === true) {
-            validPassports++
+    let validPassportArr = []
+
+    dataArr2.forEach(passportObject => {
+        if (
+            passportObject.hasOwnProperty("byr") &&
+            passportObject.hasOwnProperty("iyr") &&
+            passportObject.hasOwnProperty("eyr") &&
+            passportObject.hasOwnProperty("hgt") &&
+            passportObject.hasOwnProperty("hcl") &&
+            passportObject.hasOwnProperty("ecl") &&
+            passportObject.hasOwnProperty("pid")) {
+            validPassportArr.push(passportObject)
+        }
+    })
+    console.log(validPassportArr)
+
+    let validPassPortArr2 = []
+
+    validPassportArr.forEach(passPort => {
+        if (bryCheck(passPort) === true &&
+            iyrCheck(passPort) === true &&
+            eyrCheck(passPort) === true &&
+            hgtCheck(passPort) === true &&
+            hclCheck(passPort) === true &&
+            eclCheck(passPort) === true &&
+            pid(passPort) === true) {
+            validPassPortArr2.push(passPort)
         }
     }
-    console.log(validPassports)
+    )
+
+    console.log(validPassPortArr2)
 }
