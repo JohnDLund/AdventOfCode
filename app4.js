@@ -1081,6 +1081,7 @@ function eclCheck(passPort) {
         switch (passPort.ecl) {
             case 'amb':
             case 'blu':
+            case 'brn':
             case 'gry':
             case 'grn':
             case 'hzl':
@@ -1150,6 +1151,5 @@ function part2() {
         }
     }
     )
-
     console.log(validPassPortArr2)
 }
